@@ -1,0 +1,159 @@
+a:3:{s:4:"time";i:1616983354;s:6:"expire";i:60;s:5:"value";s:6803:"<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="manifest" href="https://cmsstatic.ffquan.cn/dist/manifest.json?v=202103261527">
+    <link rel="stylesheet" href="https://cmsstatic.ffquan.cn/dist/umi.06c8cb3f.css?v=202103261527">
+    <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>mallsaas</title>
+    <!-- <link href="//at.alicdn.com/t/font_1366499_ii7vo1vk7ud.css" rel="stylesheet" /> -->
+    <script src="https://sr.ffquan.cn/cms_pic/20200602/bravevlhkdju3b3mgvcg0swiper.min.js"></script>
+    <link rel="icon" href="/favicon.png" type="image/x-icon"><script>window.routerBase = "/";</script>
+    <script async src="https://cmsstatic.ffquan.cn/dist/pwacompat.min.js?v=202103261527"></script>
+    <script async type="text/javascript" charset="utf-8" src="//g.alicdn.com/sd/nch5/index.js?t=2015052012"></script>  <!-- 阿里滑块验证 用户等注册 -->
+    <script async type="text/javascript" src='https://public.ffquan.cn/lib/qiniuUpload/qiniuUpload.js?v=<%= Date.now() %>'></script>
+            <script>
+            var standId = 1350256;
+            var getCookie = function(name){
+                var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+                if(arr=document.cookie.match(reg))
+                return unescape(arr[2]);
+                else
+                return null;
+            };
+            var MtaH5={
+                clickShare:function(){},
+                clickStat:function(){},
+                hack:function(){},
+                pgv:function(){}
+            };
+            var _mtac = {"performanceMonitor":1,"senseQuery":1};
+            (function() {
+                var mta = document.createElement("script");
+                mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+                mta.setAttribute("name", "MTAH5");
+                /*mta.setAttribute("sid", "500628419");
+                mta.setAttribute("cid", "500628420");*/
+                mta.setAttribute("sid", "500625431");
+                mta.setAttribute("cid", "500625432");
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(mta, s);
+            })(); 
+            // DTK统计代码
+            (function() {
+                var script = document.createElement("script");
+                var time = new Date(),FullYear = time.getFullYear(),Month = time.getMonth(),getDate = time.getDate();
+                script.src = "https://public.ffquan.cn/satc/dtksatc.js?v=20210329100000";
+                script.setAttribute("name", "DTKSATC");
+                script.setAttribute("tid", "dtk-cms-1350256"); // 站点id
+                script.setAttribute("uid", getCookie("user_id")); // 登录用户id
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(script, s); 
+            })(); 
+        </script>
+        <script src="https://cmsstatic.ffquan.cn//wap_new/lib/md5.js?v=202103261527"></script></head>
+<body>
+<div id="root">
+
+</div>
+
+<script>
+    //3倍屏和<375屏 antd高清计算不准确 按照750设计稿手动计算
+    (function(){
+        setTimeout(function() {
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        }, 1000)
+        window.onresize = () => {
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        }
+    })()
+</script>
+
+<script async src="https://cmsstatic.ffquan.cn/dist/umi.9667448b.js?v=202103261527"></script>
+
+<script async src="https://public.ffquan.cn/lib/base64.min.js?v=v1.42"></script>
+<script>
+    var login_url = "/index.php?r=activity/sc#/login&returnUrl="+encodeURIComponent(window.location.href); //登录地址
+    var token_url = '/index.php?r=login/user&';
+    var detail_url = '/index.php?r=p/d';
+    var wapUid = '1350256';
+    
+    var xhr;
+    var appXhr;
+    var cookieToken = "";
+    var c_start, c_end;
+    var app_userid;
+    var app_id;
+    //最终是为了获取下面这两个变量
+    window.c_uid = "";
+    window.uid = "";
+    window.siteName = 'SY优惠';
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=");
+            if (c_start !== -1) {
+                c_start = c_start + c_name.length + 1;
+                c_end = document.cookie.indexOf(";", c_start);
+                if (c_end === -1) c_end = document.cookie.length;
+                return unescape(document.cookie.substring(c_start, c_end));
+            }else {
+                console.error("未获取到相应cookie", c_name);
+                return false;
+            }
+        }else {
+            console.error("cookie为空", c_name);
+            return false;
+        }
+    }
+
+    cookieToken = getCookie("CMS_TOKEN");
+    app_userid = getCookie('app_userid');
+    app_id = getCookie('app_id');
+    authToken = getCookie('authToken');
+    jacUid = getCookie('jac_uid');
+
+    if(app_id !== false && app_id !== undefined) {   //从app进
+        window.uid = app_id;
+        appXhr = new XMLHttpRequest ( );
+        appXhr.onreadystatechange=function(){
+            if(appXhr.readyState===4){//请求成功
+                if(appXhr.status===200){//响应成功
+                    window.c_uid = JSON.parse(appXhr.response).data.c_uid;
+                }else {
+                    console.error("获取c_uid错误 ", appXhr.status)
+                }
+            }
+        }
+        appXhr.open('get', token_url + "app_token=" + app_userid, false);
+        appXhr.send(null);
+
+    }else {  //从web进
+        window.uid = '1350256';
+        xhr = new XMLHttpRequest ( );
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState===4){//请求成功
+                if(xhr.status===200){//响应成功
+                    var responseJson = JSON.parse(xhr.response);
+                    if( responseJson.status == 0 || responseJson.data == undefined || responseJson.data.c_uid == undefined){
+                        return false;
+                    }
+                    window.c_uid = responseJson.data.c_uid;
+                }else {
+                    console.error("获取c_uid错误 ", xhr.status)
+                }
+            }
+        }
+
+        xhr.open('get', token_url + "token=" + cookieToken, false);
+
+        xhr.send(null);
+    }
+</script>
+
+
+</body>
+</html>";}
