@@ -45,7 +45,7 @@
 $appId = '1350256';  // 站点的APPID （请勿修改和泄漏）
 $appKey = '585F2B2DA27E13A6A9C1A228B56B9762';// 站点的APP KEY（请勿修改和泄漏）
 
-$proxyVersion = 22;
+$proxyVersion = 23;
 $autoCleanCache = 100;
 
 //===============================================================================
@@ -56,7 +56,7 @@ $autoCleanCache = 100;
 //===============================================================================
 //===============================================================================
 
-$host = "http://cms1.dataoke.com";
+$host = "http://cms5.dataoke.com";
 
 @date_default_timezone_set('Asia/Shanghai');
 $is_host_data = false;
@@ -273,7 +273,7 @@ if (strpos($html, 'OR--server error') !== false) {
 }
 if ($requestMethod == 'GET' && $httpHelper->httpCode == 200 && !empty($html) && !$test_env) {
     $cache_check = !empty($_COOKIE['cache_check']) ? $_COOKIE['cache_check'] : null;
-    $expire = empty($cache_check) ? 60 : 600;
+    $expire = empty($cache_check) ? 10 : 60;
     @header('Dtk-Cache-Check-time:'.$expire);
     $cache->Set($key, $html, $expire);
 }
@@ -294,7 +294,7 @@ class HttpHelper
     protected $isVip;
     protected $documentUrl;
     protected $proxyVersion;
-    protected $upgradeUrl = "http://www.dataoke.com/pmc/upgrade.html";
+    protected $upgradeUrl = "https://www.dataoke.com/pmc/upgrade.html";
 
     public $host_data = array();
     public $httpCode = 200;
@@ -447,8 +447,10 @@ class HttpHelper
         curl_setopt($ch, CURLOPT_TIMEOUT, $curl_time);
         curl_setopt($ch, CURLOPT_USERAGENT, $ua);
         curl_setopt($ch, CURLOPT_REFERER, $refer);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
         $header = array(
             'APPID: ' . $this->appId,
@@ -471,22 +473,22 @@ class HttpHelper
             $cdn_ip = false;
         }
         $origin_url = $url;
-        if($cdn_ip!==false){
-            $url = str_replace('http://','',$url);
-            $check_url_show = false;
-            if (strpos($url, '/pmc/upgrade.html') !== false) {
-                $check_url_show = true;
-                $url = str_replace('/pmc/upgrade.html', '', $url);
-            }
-            $header[] = 'Host: ' . $url;
-            if ($check_url_show) {
-                $url = $cdn_ip[0] . '/pmc/upgrade.html';
-            } else {
-
-                $url = $cdn_ip[0];
-            }
-
-        }
+//        if($cdn_ip!==false){
+//            $url = str_replace('http://','',$url);
+//            $check_url_show = false;
+//            if (strpos($url, '/pmc/upgrade.html') !== false) {
+//                $check_url_show = true;
+//                $url = str_replace('/pmc/upgrade.html', '', $url);
+//            }
+//            $header[] = 'Host: ' . $url;
+//            if ($check_url_show) {
+//                $url = $cdn_ip[0] . '/pmc/upgrade.html';
+//            } else {
+//
+//                $url = $cdn_ip[0];
+//            }
+//
+//        }
         if(function_exists('gzdecode')){
             $header[] = 'Accept-Encoding: gzip, deflate';
         }
@@ -550,6 +552,7 @@ class HttpHelper
                     count($q) ? '?' . http_build_query($q) : '');
                 curl_setopt($ch, CURLOPT_URL, $cUrl);
             } else {
+                $url .= "?random=".rand(1000000000,99999999999);
                 curl_setopt($ch, CURLOPT_URL, $url);
             }
         }
@@ -1006,7 +1009,7 @@ class GoHttpHelper
 
     public function __construct($uri)
     {
-        //测试：http://taobaoapi.haojiequ.com
+        //测试：http://taobaoapi.buydance.com
         //线上：http://taobaoapi.ffquan.cn
         $this->url = "http://dtkapi.ffquan.cn/" . $uri;
     }
